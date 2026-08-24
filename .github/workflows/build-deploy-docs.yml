@@ -1,13 +1,8 @@
 name: Build Deploy Docs
 
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - '.github/workflows/build-deploy-docs.yml'
-      - 'DOCUMENTATION/**'
-
+  # Manual only: trigger from the Actions tab (or `gh workflow run`).
+  workflow_dispatch:
 permissions: {}
 jobs:
   build-deploy-docs:

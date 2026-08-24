@@ -1,16 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches: '**'
-    tags: '**'
-    paths-ignore:
-      - '.github/workflows/build-deploy-docs.yml'
-      - 'DOCUMENTATION/**'
-  pull_request:
-  schedule:
-    - cron: '0 0 * * 0'
-
+  # Manual only: trigger from the Actions tab (or `gh workflow run`).
+  workflow_dispatch:
 permissions:
   contents: read # to fetch code (actions/checkout)
 
