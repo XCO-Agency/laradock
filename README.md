@@ -1,3 +1,25 @@
+# XCO fork
+
+This is [XCO Agency](https://github.com/XCO-Agency)'s fork of [laradock/laradock](https://github.com/laradock/laradock). It is a dormant snapshot. The Laradock readme below this section, and `DOCUMENTATION/`, are the upstream text from that snapshot. Details and sources: [docs/xco.md](docs/xco.md). Checked 2026-11-22.
+
+**Status.** Dormant. The fork was created on 2023-10-27. The only branch is `master`. The last push is 2026-08-24 (`3d68b6f`). XCO's portfolio map (`XCO-Agency/ai-config`, `brain/projects/README.md`) lists `laradock` in the Dormant tier. Coolify production has no application built from this repo; running apps are the product repositories (Shopify apps and Laravel apps such as Corex, Sappo, Shopeye, and Claium). No org repo is named `dev-lab`. Local images live in [`shopify-docker-lab`](https://github.com/XCO-Agency/shopify-docker-lab): `dev/` is the Shopify CLI container, and `production/laravel-frankenphp-docker-image` builds `xcoagency/laravel-frankenphp-octane`, which [`Laravel-SAAS-Starter`](https://github.com/XCO-Agency/Laravel-SAAS-Starter) uses. That starter documents a host PHP 8.4 install, and production deploys go through Coolify. The portfolio map also marks `shopify-docker-lab` Dormant; the image reference and that repo's 2026-11-22 push are noted in [docs/xco.md](docs/xco.md) and left as they are.
+
+**Why this fork is still here.** It keeps the 2023 Laradock tree in the XCO org, plus one CI change. Service files and `.env.example` are unchanged from upstream. Commit `3d68b6f` (Anass Ez-zouaine, 2026-08-24) switches `.github/workflows/main-ci.yml` and `build-deploy-docs.yml` to `workflow_dispatch` only, so upstream's push, pull request, and weekly jobs do not run on the fork.
+
+**What differs from upstream.** Fork point `b958fc0` (2023-10-19, upstream PR #3421). `git diff b958fc0..HEAD` is those two workflow files. Upstream `master` was 391 commits ahead of that point on 2026-11-22 (tip `0fd82a5`; compare [b958fc0...master](https://github.com/laradock/laradock/compare/b958fc0...master)). This tree still has 101 compose services and 715 keys in `.env.example`. The upstream README commit in this history is `955d66d` (2023-10-15 00:56 +0800, which is 2023-10-14 16:56 UTC).
+
+**Services and keys.** No XCO subset is committed: no `.env`, no compose override, no XCO edits under the service directories. `.env.example` still defaults to `PHP_VERSION=7.4`. To boot the upstream demo from this snapshot (PHP, NGINX, MySQL, Redis, workspace), use the commands in `DOCUMENTATION/content/getting-started/index.md`:
+
+```bash
+cp .env.example .env
+docker-compose up -d nginx mysql phpmyadmin redis workspace
+docker-compose exec workspace bash
+```
+
+`nginx` starts `php-fpm` through its compose dependency. Other services stay off until named. The 715 keys are upstream switches; read `.env.example` and https://laradock.io/documentation/ rather than a second catalogue here.
+
+---
+
 <p align="center">
     <img src="/.github/home-page-images/laradock-logo.jpg?raw=true" alt="Laradock Logo"/>
 </p>
